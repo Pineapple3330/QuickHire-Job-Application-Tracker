@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% block title %}Schedule Interview | QuickHire{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card application-form-card">
+
+        <h1>Schedule Interview</h1>
+
+        <p>
+            {{ application.job_title }} at {{ application.company }}
+        </p>
+
+        <form method="POST">
+
+            <label>Interview Round *</label>
+
+            <input
+                type="text"
+                name="round_name"
+                placeholder="e.g. Technical Round 1"
+                required
+            >
+
+            <label>Interview Type</label>
+
+            <select name="interview_type">
+                <option value="Technical">Technical</option>
+                <option value="HR">HR</option>
+                <option value="Managerial">Managerial</option>
+                <option value="Online Assessment">Online Assessment</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label>Date and Time *</label>
+
+            <input
+                type="datetime-local"
+                name="scheduled_at"
+                required
+            >
+
+            <label>Location / Meeting Link</label>
+
+            <input
+                type="text"
+                name="location"
+                placeholder="Office address or meeting URL"
+            >
+
+            <label>Preparation Notes</label>
+
+            <textarea
+                name="notes"
+                rows="4"
+                placeholder="Topics to prepare, interviewer details, etc."
+            ></textarea>
+
+            <button type="submit" class="primary-btn">
+                Schedule Interview
+            </button>
+
+            <a href="{{ url_for('main.interviews') }}"
+               class="cancel-link">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,110 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    {% if application %}Edit Application{% else %}Add Application{% endif %}
+    | QuickHire
+{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card application-form-card">
+
+        <h1>
+            {% if application %}
+                Edit Application
+            {% else %}
+                Add Job Application
+            {% endif %}
+        </h1>
+
+        <p>Keep track of your career opportunities.</p>
+
+        <form method="POST">
+
+            <label>Job Title *</label>
+            <input
+                type="text"
+                name="job_title"
+                value="{{ application.job_title if application else '' }}"
+                placeholder="e.g. Software Engineer"
+                required
+            >
+
+            <label>Company Name *</label>
+            <input
+                type="text"
+                name="company"
+                value="{{ application.company if application else '' }}"
+                placeholder="e.g. Google"
+                required
+            >
+
+            <label>Location</label>
+            <input
+                type="text"
+                name="location"
+                value="{{ application.location or '' if application else '' }}"
+                placeholder="e.g. Pune, India"
+            >
+
+            <label>Application Status</label>
+            <select name="status">
+                {% for status in statuses %}
+                    <option
+                        value="{{ status }}"
+                        {% if application and application.status == status %}
+                            selected
+                        {% elif not application and status == "Applied" %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ status }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Application Date</label>
+            <input
+                type="date"
+                name="applied_date"
+                value="{{ application.applied_date.isoformat() if application and application.applied_date else '' }}"
+            >
+
+            <label>Job Posting URL</label>
+            <input
+                type="url"
+                name="job_url"
+                value="{{ application.job_url or '' if application else '' }}"
+                placeholder="https://company.com/careers"
+            >
+
+            <label>Job Description / Notes</label>
+            <textarea
+                name="description"
+                rows="4"
+                placeholder="Add useful details about this opportunity..."
+            >{{ application.description or '' if application else '' }}</textarea>
+
+            <button type="submit" class="primary-btn">
+                {% if application %}
+                    Save Changes
+                {% else %}
+                    Add Application
+                {% endif %}
+            </button>
+
+            <a href="{{ url_for('main.dashboard') }}"
+               class="cancel-link">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

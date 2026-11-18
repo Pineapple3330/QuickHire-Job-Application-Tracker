@@ -1,0 +1,107 @@
+
+{% extends "base.html" %}
+
+{% block title %}Interviews | QuickHire{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h1>Interview Schedule</h1>
+            <p>Manage your upcoming and completed interviews.</p>
+        </div>
+
+        <a href="{{ url_for('main.dashboard') }}"
+           class="add-btn">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+    {% if interviews %}
+
+        <div class="application-list">
+
+            {% for interview in interviews %}
+
+                <div class="application-card">
+
+                    <div class="application-info">
+
+                        <h3>{{ interview.round_name }}</h3>
+
+                        <p class="company-name">
+                            {{ interview.application.job_title }}
+                            at {{ interview.application.company }}
+                        </p>
+
+                        <p>
+                            Type: {{ interview.interview_type }}
+                        </p>
+
+                        <p>
+                            Date:
+                            {{ interview.scheduled_at.strftime("%d %b %Y, %I:%M %p") }}
+                        </p>
+
+                        {% if interview.location %}
+                            <p>Location: {{ interview.location }}</p>
+                        {% endif %}
+
+                        {% if interview.notes %}
+                            <p>Notes: {{ interview.notes }}</p>
+                        {% endif %}
+
+                        <span class="status">
+                            {{ interview.status }}
+                        </span>
+
+                    </div>
+
+                    <div class="application-actions">
+
+                        <form
+                            method="POST"
+                            action="{{ url_for('main.delete_interview', interview_id=interview.id) }}"
+                            onsubmit="return confirm('Delete this interview?');"
+                        >
+
+                            <button type="submit" class="delete-btn">
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h3>No interviews scheduled</h3>
+
+            <p>
+                Open your job applications and schedule your first interview.
+            </p>
+
+            <a href="{{ url_for('main.dashboard') }}"
+               class="add-btn">
+                View Applications
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,528 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 8%;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #374151;
+    font-weight: 600;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.tagline {
+    color: #2563eb;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 52px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.primary-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+
+/* Authentication pages */
+
+.auth-container {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+}
+
+.auth-card h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.auth-card > p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.auth-card label {
+    display: block;
+    margin: 15px 0 8px;
+    font-weight: 600;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.auth-card .primary-btn {
+    width: 100%;
+    margin-top: 22px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.auth-footer {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* Navigation */
+
+.logo {
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.logout-form {
+    display: inline;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* Dashboard */
+
+.dashboard-container {
+    padding: 50px 8%;
+}
+
+.dashboard-container > h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.dashboard-container > p {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 30px 0 45px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+}
+
+.stat-card h3 {
+    color: #64748b;
+    font-size: 15px;
+}
+
+.stat-card h2 {
+    color: #2563eb;
+    font-size: 32px;
+    margin-top: 12px;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.application-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.application-card h3 {
+    margin-bottom: 8px;
+}
+
+.application-card p {
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.status {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* Notifications */
+
+.flash-container {
+    padding: 0 8%;
+}
+
+.flash-message {
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 7px;
+}
+
+.flash-message.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.flash-message.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Responsive layout */
+
+@media (max-width: 750px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 450px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        padding: 18px 5%;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+}
+
+
+/* Dashboard header */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.add-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Application form */
+
+.application-form-card {
+    max-width: 550px;
+}
+
+.application-form-card input,
+.application-form-card select,
+.application-form-card textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.application-form-card textarea {
+    resize: vertical;
+}
+
+.application-form-card .primary-btn {
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.cancel-link {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    color: #64748b;
+    text-decoration: none;
+}
+
+/* Search and filters */
+
+.filter-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 35px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-form input {
+    flex: 2;
+    min-width: 180px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+}
+
+.filter-form select {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+}
+
+.filter-btn {
+    background: #172033;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.reset-link {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    text-decoration: none;
+}
+
+/* Application cards */
+
+.application-list {
+    display: grid;
+    gap: 15px;
+}
+
+.application-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.application-info p {
+    margin: 8px 0;
+    color: #64748b;
+}
+
+.application-info .company-name {
+    color: #172033;
+    font-weight: bold;
+}
+
+.application-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.application-actions a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.application-actions form {
+    margin: 0;
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: none;
+    padding: 9px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Status labels */
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    background: #dbeafe;
+}
+
+.status-interview {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-selected {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-withdrawn {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+/* Empty state */
+
+.empty-state {
+    text-align: center;
+    background: white;
+    padding: 50px 20px;
+    border-radius: 12px;
+}
+
+.empty-state p {
+    color: #64748b;
+    margin: 15px 0 25px;
+}
+
+@media (max-width: 600px) {
+    .dashboard-header {
+        align-items: flex-start;
+    }
+
+    .application-card {
+        align-items: flex-start;
+    }
+
+    .filter-form {
+        flex-direction: column;
+    }
+}
+
+
+/* Interview management */
+
+.interview-badge {
+    display: inline-block;
+    background: #ede9fe;
+    color: #6d28d9;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.application-actions a {
+    white-space: nowrap;
+}
+
+.application-info {
+    flex: 1;
+    min-width: 220px;
+}
+
+.application-actions {
+    align-self: center;
+}

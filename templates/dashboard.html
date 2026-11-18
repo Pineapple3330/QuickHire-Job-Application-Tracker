@@ -1,0 +1,178 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | QuickHire{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h1>Hello, {{ current_user.username }}!</h1>
+            <p>Here's an overview of your job search.</p>
+        </div>
+
+        <a href="{{ url_for('main.add_application') }}"
+           class="add-btn">
+            + Add Application
+        </a>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Applications</h3>
+            <h2>{{ total }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Interviews</h3>
+            <h2>{{ interviews }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Selected</h3>
+            <h2>{{ selected }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Rejected</h3>
+            <h2>{{ rejected }}</h2>
+        </div>
+
+    </div>
+
+    <!-- Search and Filters -->
+
+    <div class="filter-section">
+
+        <form method="GET"
+              action="{{ url_for('main.dashboard') }}"
+              class="filter-form">
+
+            <input
+                type="search"
+                name="search"
+                value="{{ search }}"
+                placeholder="Search job title or company..."
+            >
+
+            <select name="status">
+                <option value="">All Statuses</option>
+
+                {% for status in statuses %}
+                    <option
+                        value="{{ status }}"
+                        {% if status_filter == status %}selected{% endif %}
+                    >
+                        {{ status }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="filter-btn">
+                Search
+            </button>
+
+            <a href="{{ url_for('main.dashboard') }}"
+               class="reset-link">
+                Reset
+            </a>
+
+        </form>
+
+    </div>
+
+    <!-- Application List -->
+
+    <h2 class="section-title">Your Applications</h2>
+
+    {% if applications %}
+
+        <div class="application-list">
+
+            {% for application in applications %}
+
+                <div class="application-card">
+
+                    <div class="application-info">
+
+                        <h3>{{ application.job_title }}</h3>
+
+                        <p class="company-name">
+                            {{ application.company }}
+                        </p>
+
+                        <p>
+                            {{ application.location or "Location not specified" }}
+                        </p>
+
+                        <p>
+                            Applied:
+                            {{ application.applied_date or "Date not specified" }}
+                        </p>
+
+                        <span class="status status-{{ application.status|lower }}">
+                            {{ application.status }}
+                        </span>
+
+                    </div>
+
+                    <div class="application-actions">
+
+                        <a href="{{ url_for('main.add_interview', application_id=application.id) }}">
+    + Schedule Interview
+</a>
+
+                        {% if application.job_url %}
+                            <a href="{{ application.job_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                View Job
+                            </a>
+                        {% endif %}
+
+                        <a href="{{ url_for('main.edit_application', application_id=application.id) }}">
+                            Edit
+                        </a>
+
+                        <form
+                            method="POST"
+                            action="{{ url_for('main.delete_application', application_id=application.id) }}"
+                            onsubmit="return confirm('Are you sure you want to delete this application?');"
+                        >
+                            <button type="submit" class="delete-btn">
+                                Delete
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+            <h3>No applications found</h3>
+            <p>Add your first job application to get started.</p>
+
+            <a href="{{ url_for('main.add_application') }}"
+               class="add-btn">
+                Add Your First Application
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
